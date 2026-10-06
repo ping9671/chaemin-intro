@@ -61,7 +61,10 @@ h1,h2,h3{text-wrap:balance;margin:0}
   color:var(--accent2); background:color-mix(in srgb, var(--accent2) 14%, transparent);
   padding:5px 14px;border-radius:999px;
 }
-.mascot{width:168px;height:168px}
+.mascot{width:148px;height:148px}
+.needle{transform-box:view-box;transform-origin:80px 80px;transform:rotate(32deg);animation:settle 1.8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes settle{0%{transform:rotate(-60deg)}55%{transform:rotate(48deg)}78%{transform:rotate(26deg)}100%{transform:rotate(32deg)}}
+@media (prefers-reduced-motion:reduce){.needle{animation:none}}
 .name{font-family:'Gaegu',cursive;font-weight:700;font-size:clamp(2.4rem,9vw,3.2rem);line-height:1}
 .tagline{font-size:1.05rem;font-weight:500;color:var(--muted)}
 .tagline b{color:var(--ink);font-weight:700}
@@ -138,29 +141,24 @@ h1,h2,h3{text-wrap:balance;margin:0}
   <header class="hero">
     <span class="eyebrow">FIELD NOTES — 탐험 노트</span>
 
-    <svg class="mascot" viewBox="0 0 160 160" role="img" aria-label="배낭과 나침반을 든 캐릭터">
-      <ellipse cx="80" cy="150" rx="46" ry="6" fill="var(--ink)" opacity="0.08"/>
-      <!-- backpack -->
-      <rect x="96" y="70" width="30" height="46" rx="10" fill="var(--accent)"/>
-      <rect x="101" y="78" width="20" height="10" rx="4" fill="var(--surface)" opacity="0.5"/>
-      <!-- legs -->
-      <rect x="62" y="118" width="14" height="28" rx="6" fill="var(--ink)"/>
-      <rect x="86" y="118" width="14" height="28" rx="6" fill="var(--ink)"/>
-      <!-- body -->
-      <path d="M55 70 q25 -14 50 0 l6 48 q-31 14 -62 0 Z" fill="var(--accent2)"/>
-      <!-- arm holding compass -->
-      <rect x="40" y="86" width="30" height="13" rx="6.5" fill="var(--accent2)"/>
-      <circle cx="36" cy="92" r="16" fill="var(--accent3)"/>
-      <circle cx="36" cy="92" r="11" fill="var(--surface)"/>
-      <path d="M36 85 L40 92 L36 99 L32 92 Z" fill="var(--accent)"/>
-      <!-- head -->
-      <circle cx="82" cy="46" r="30" fill="#F2C9A0"/>
-      <path d="M53 40 q6 -26 34 -24 q26 2 26 24 q-14 -10 -30 -10 q-18 0 -30 10 Z" fill="var(--ink)"/>
-      <circle cx="72" cy="48" r="3.2" fill="var(--ink)"/>
-      <circle cx="93" cy="48" r="3.2" fill="var(--ink)"/>
-      <path d="M74 59 q8 7 16 0" stroke="var(--ink)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-      <!-- little sprout on backpack -->
-      <path d="M111 66 q0 -10 6 -14 q-8 0 -10 8 q-1 -9 -9 -11 q2 10 9 13 q0 2 0 4 Z" fill="var(--accent2)"/>
+    <svg class="mascot" viewBox="0 0 160 160" role="img" aria-label="나침반 모양 로고">
+      <!-- outer ring + cardinal ticks -->
+      <circle cx="80" cy="80" r="70" fill="none" stroke="var(--ink)" stroke-opacity="0.18" stroke-width="1"/>
+      <path d="M80 10v8M80 142v8M10 80h8M142 80h8" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <!-- dotted route -->
+      <circle cx="80" cy="80" r="56" fill="none" stroke="var(--ink)" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="1.5 6" stroke-linecap="round"/>
+      <text x="80" y="33" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="9" font-weight="700" letter-spacing="1" fill="var(--muted)">N</text>
+      <!-- core -->
+      <circle cx="80" cy="80" r="38" fill="var(--accent2)"/>
+      <!-- idea spark on the route -->
+      <circle cx="116" cy="37" r="6" fill="var(--accent3)"/>
+      <circle cx="40" cy="123" r="2.5" fill="var(--ink)" fill-opacity="0.4"/>
+      <!-- needle -->
+      <g class="needle">
+        <path d="M80 48 L88 80 L72 80 Z" fill="var(--accent)"/>
+        <path d="M72 80 L88 80 L80 112 Z" fill="var(--surface)"/>
+        <circle cx="80" cy="80" r="4" fill="var(--ink)"/>
+      </g>
     </svg>
 
     <h1 class="name">이채민</h1>
